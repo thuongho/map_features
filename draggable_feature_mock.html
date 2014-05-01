@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>City</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="js/jquery-ui-1.10.4/themes/base/jquery-ui.css">
+  <script type="text/javascript" src="js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+  
+  <style type="text/css">
+
+  h1, h3
+  {
+    text-align: center; 
+    margin: 0px;
+  }
+
+  /* style the list to maximize the droppable hitarea */
+  #canvas  
+  {
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 0px auto;
+    overflow: hidden;
+  }
+  /*#canvas ol { margin: 0; padding: 1em 0 1em 3em; }*/
+  /*li { list-style: none;}*/
+  .canvas-area 
+  {
+    width: 600px;
+    height: 600px;
+  }
+
+  /* map background */
+/*  img {
+      position: relative;
+      left: 50%;
+      top: 50%;
+  }*/
+
+  /* draggable icons */
+  .draggable 
+  { 
+    background: transparent url('images/transparent.png') repeat center top;
+    width: 40px; 
+    height: 40px; 
+    padding: 5px; 
+    float: left; 
+    margin: 0 10px 10px 0; 
+    font-size: .9em; 
+    border: hidden;
+    /*position: absolute;*/
+  }
+  #draggable
+  {
+    width: 40px;
+    height: 40px;
+  }
+  div img 
+  {
+    margin: 0px auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow img
+  {
+    width: 200px;
+    height: 200px;
+  }
+  .arrow
+  {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+  }
+  .commercial100 img
+  {
+    width: 100px;
+    height: 100px;
+  }
+  .commercial100
+  {
+    width: 100px;
+    height: 100px;
+  }
+  
+  #building img
+  {
+    height: 150px;
+  }
+
+  </style>
+
+  <script>
+
+    // jquery ui script for snapping to grid
+    $(function() {
+      $( ".draggable" ).draggable({ grid: [10,10] });
+      $( "#draggable4" ).draggable({ grid: [ 20, 20 ], snap: true });
+    });
+  </script>
+</head>
+<body>
+<div class="content">
+
+  <!-- Canvas for building the city -->
+  <h1>Mock view of my city</h1>
+  <h3>600 x 600</h3>
+  <div id="canvas">
+  
+    <div class="ui-widget-content canvas-area">
+
+      <p class="placeholder">Add your items here</p>
+  
+      <div id="arrowSvg" class="draggable ui-widget-content arrow">
+        <img src="images/arrow.svg" alt="house" type="image/svg+xml" /> SVG (200px x 200px)
+      </div>
+
+      <div id="arrowPng" class="draggable ui-widget-content arrow">
+        <img src="images/arrow.png" alt="house"> PNG (200px x 200px) 
+      </div>
+
+      <div id="building" class="draggable ui-widget-content commercial100">
+        <img src="images/building.png" alt="building" />
+      </div>
+
+      <div id="factory" class="draggable ui-widget-content commercial100" >
+        <img src="images/factory.png" alt="factory" />
+      </div>
+
+      <div id="ferry" class="draggable ui-widget-content commercial100" >
+        <img src="images/ferry.png" alt="ferry" />
+      </div>
+
+      <div id="house2l" class="draggable ui-widget-content" >
+        <img src="images/house2l.png" alt="two level house" />
+      </div>
+
+      <div id="houseSvg" class="draggable ui-widget-content"> 
+        <img src="images/house.svg" alt="house" type="image/svg+xml" /> SVG
+      </div>
+
+      <div id="housePng" class="draggable ui-widget-content">
+        <img src="images/house.png" alt="house" />
+      </div>
+
+      <div id="houseSF" class="draggable ui-widget-content" >
+        <img src="images/housesf.png" alt="SF house" />
+      </div>
+
+      <div id="street1" class="draggable ui-widget-content street" >
+        <img src="images/street.png" alt="street">
+      </div>
+
+      <div id="street2" class="draggable ui-widget-content street" >
+        <img src="images/street.png" alt="street">
+      </div>
+
+      <div id="street3" class="draggable ui-widget-content street" >
+        <img src="images/street.png" alt="street">
+      </div>
+
+      <div id="street4" class="draggable ui-widget-content street" >
+        <img src="images/street.png" alt="street">
+      </div>
+   
+    </div> 
+    <script>
+    // code to make the active div move to the front
+    // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
+
+      // create an array to hold the (buildings, streets, landmarks) element's id
+      var ids=[],
+      // grab all the divs (each icon) and put it into thedivs
+      thedivs = document.getElementById("canvas").getElementsByTagName("div");
+
+      for (var i = 0; i < thedivs.length; i++) {
+
+        // add the id of each div to the ids array
+        ids.push(thedivs[i].id);
+
+        thedivs[i].onclick = function() {
+
+          for (var a = 0; a < ids.length; a++) {
+            if (this.id == ids[a]) {
+              // take current id that matches the selected id and move it to the end
+              ids.push(ids.splice(a,1));
+            }
+            document.getElementById(ids[a]).style.zIndex=a;     
+          }
+        }
+      }
+    </script>
+  </div>
+</div>
+</body>
+</html>

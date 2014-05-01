@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>City</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="js/jquery-ui-1.10.4/themes/base/jquery-ui.css">
+  <script type="text/javascript" src="js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+  
+  <style type="text/css">
+  .flip 
+  {
+    background: #CCCCCC;
+    border:1px solid gray;
+    border-radius: 5px;
+    padding-left: 10px;
+    width: 80px;
+    position: relative;
+    top: 0px;
+  }
+  .icon-holder
+  {
+    background: blue;
+    border:1px solid gray;
+    border-radius: 5px;
+    padding-left: 10px;
+    display: none;
+    position: relative;
+    top: 0px;
+    width: 250px;
+  }
+
+  /* styling from jquery ui shopping cart demo */
+  h1 { padding: .2em; margin: 0; }
+  #icons 
+  { 
+    float:left; 
+    width: 250px;
+    height: 500px; 
+    /*margin-right: 2em; */
+  }
+  #icons div 
+  {
+    height: 100%;
+  }
+  /*#canvas { width: 200px; float: left; margin-top: 1em; }*/
+  /* style the list to maximize the droppable hitarea */
+  #canvas  
+  {
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 0px auto;
+    overflow: hidden;
+  }
+  #canvas ol { margin: 0; padding: 1em 0 1em 3em; }
+  li { list-style: none;}
+  .canvas-area 
+  {
+    width: 600px;
+    height: 600px;
+  }
+
+  /* map background */
+  img {
+      position: relative;
+      left: 50%;
+      top: 50%;
+  }
+
+  /* draggable icons */
+  .draggable 
+  { 
+    background: transparent url('images/transparent.png') repeat center top;
+    width: 40px; 
+    height: 40px; 
+    padding: 5px; 
+    float: left; 
+    margin: 0 10px 10px 0; 
+    font-size: .9em; 
+    /*position: absolute;*/
+  }
+  #draggable
+  {
+    width: 40px;
+    height: 40px;
+  }
+  div img 
+  {
+    margin: 0px auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  </style>
+
+  <script>
+    // jQuery script for view/hide instructions
+    $(document).ready(function(){
+      $('.flip').click(function(){
+        // $('.instruction').slideToggle("slow");
+        $(this).next().animate({width: 'toggle'});
+      });
+    });
+
+    // jquery ui script for shopping cart
+    $(function(){
+      $("#catalog").accordion();
+      $("#catalog li").draggable({
+      // $("#catalog div").draggable({
+        appendTo: "body",
+        helper: "clone"
+      });
+      // area on the canvas where the icons can be placed on
+      // $("#canvas ul").droppable({
+      $("#canvas div").droppable({
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        accept: ":not(.ui-sortable-helper)",
+        drop: function( event, ui ){
+          $(this).find(".placeholder").remove();
+          // add a DOM tag to the text and append it to the body
+          // $("<li></li>").text(ui.draggable.text()).appendTo(this);
+          $("<div id='draggable' class='ui-widget-content'></div>").text(ui.draggable.text()).appendTo(this);
+        }
+      }).sortable({
+        items: "li:not(.placeholder)",
+        sort: function(){
+          // gets added unintentionally by droppable interacting with sortable
+          // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+          $(this).removeClass("ui-state-default");
+        }
+      });
+    });
+
+    // jquery ui script for snapping to grid
+    $(function() {
+      $( ".draggable" ).draggable({ grid: [10,10] });
+        $( "#draggable4" ).draggable({ grid: [ 20, 20 ], snap: true });
+    });
+  </script>
+</head>
+<body>
+<!-- <div class="content">
+  <div class="flip">
+    <h5>View/Hide</h5>
+  </div>
+  <div class="icon-holder">
+    <div id="icons">
+      <h1 class="ui-widget-header">Icons</h1>  
+      <div id="catalog"> -->
+      <!-- Street icons -->
+ <!--        <h2><a href="#">Street</a></h2>
+        <div>
+          <ul>
+            <li>img</li>
+            <li>img</li>
+            <li>img</li>
+            <li>img</li>
+          </ul>
+        </div> -->
+      <!-- Building icons -->
+<!--         <h2><a href="#">Building</a></h2>
+        <div>
+          <ul>
+            <li>img</li>
+            <li>img</li>
+            <li>img</li>
+            <li>img</li>
+          </ul>
+        </div> -->
+      <!-- Landmark icons -->
+<!--         <h2><a href="#">Landmark</a></h2>
+        <div>
+          <ul>
+            <li>
+              <div style="background:red;width:20px;height:20px;">
+              </div>
+            </li>
+            <li>img</li>
+            <li>img</li>
+            <li>img</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Canvas for building the city -->
+  <input type="button" value ="-" onclick="zoom(0.9)"/>
+  <input type="button" value ="+" onclick="zoom(1.1)"/>
+  <div id="canvas">
+  
+    <div class="ui-widget-content canvas-area">
+    <img id="pic" src="images/SFmap_outline2.jpg"/>
+
+      <ul>
+        <li class="placeholder">Add your items here</li>
+  
+        <div id="draggable4" class="draggable ui-widget-content">
+          <p>I snap to a 20 x 20 grid</p>
+        </div>
+        <div id="draggable4" class="draggable ui-widget-content">
+            <p>I snap to a 20 x 20 grid</p>
+        </div>
+        <div id="draggable" class="draggable ui-widget-content">
+          <img src="images/house.svg" alt="house" type="image/svg+xml" width="40" height="40" />
+          <!-- <object data="images/house.svg" width="40" height="40" type="image/svg+xml" codebase="http://www.savarese.com/software/svgplugin/"></object> -->
+
+        </div>
+        <div id="draggable" class="draggable ui-widget-content">
+          <img src="images/house.png" alt="house" width="20" height="20">
+        </div>
+
+        <!-- click to move to the front z index -->
+        <!-- <div style="position:absolute; left:10px; top:10px; background-color:red; width:150px; height:150px; z-index:101">div 1</div> -->
+        <div id="others">
+       <!--  <div id="two" class="draggable ui-widget-content" style="position:absolute; left:80px; top:20px; background-color:magenta;">
+        <img src="images/house.png" alt="house" width="40" height="40">
+        house 2</div> -->
+        <div id="two" class="draggable ui-widget-content" style="position:absolute; left:80px; top:20px;">
+          <img src="images/house.png" alt="house" width="40" height="40"> house png
+        </div>
+        <!-- <div id="three" class="draggable ui-widget-content" style="position:absolute; left:120px; top:10px; background-color:yellow;">
+        <img src="images/house.svg" alt="house" type="image/svg+xml" width="40" height="40" />  house 3</div> -->
+        <div id="three" class="draggable ui-widget-content" style="left:120px; top:10px;">
+          <img src="images/house.svg" alt="house" type="image/svg+xml" width="40" height="40" />  house svg
+        </div>
+
+        <div id="four" class="draggable ui-widget-content" style="position:absolute; left:110px; top:70px;">
+          <img src="images/factory.png" alt="house" width="40" height="40"> factory png
+        </div>
+        <div id="five" class="draggable ui-widget-content" style="position:absolute; left:50px; top:100px; background-color:blue;">div 5</div>
+        <div id="draggable" class="draggable ui-widget-content">
+          <img src="images/house.png" alt="house" width="40" height="40">
+          <p>moveable</p>
+        </div>
+        </div> 
+        <script>
+        // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
+          var ids=[]
+
+          thedivs=document.getElementById("others").getElementsByTagName("div")
+
+          for (var i = 0; i < thedivs.length; i++) {
+            ids.push(thedivs[i].id);
+            thedivs[i].onclick=function(){
+            for (var a = 0; a < ids.length; a++) {
+            if (this.id==ids[a]){
+            ids.push(ids.splice(a,1));
+                  }
+            document.getElementById(ids[a]).style.zIndex=a;     
+                }
+              }
+          }
+        </script>
+      </ul>
+    </div>
+    <script>
+      window.onload = function(){zoom(1)}
+
+      function zoom(zm) {
+      img=document.getElementById("pic")
+      wid=img.width
+      ht=img.height
+      img.style.width=(wid*zm)+"px"
+      img.style.height=(ht*zm)+"px"
+          img.style.marginLeft = -(img.width/2) + "px";
+          img.style.marginTop = -(img.height/2) + "px";
+      }
+
+    </script>
+  </div>
+</div>
+</body>
+</html>

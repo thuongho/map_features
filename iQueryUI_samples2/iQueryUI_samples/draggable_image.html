@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Default functionality</title>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+  #street1 { width: 20px; height: 20px; }
+  #street2 { width: 20px; height: 20px; }
+  #street3 { width: 20px; height: 20px; }
+  #street4 { width: 20px; height: 20px; }
+  #intersection { width: 20px; height: 20px; }
+  #building { width: 100px; height: 100px; }
+  </style>
+
+  <script>
+  $(function() {
+    $( "#street1" ).draggable({grid:[20,20]}).resizable({grid:20}, {maxHeight: 20, minHeight: 20});
+    $( "#street2" ).draggable({grid:[20,20]}).resizable({grid:20}, {maxWidth: 20, minWidth: 20});
+    $( "#street3" ).draggable({grid:[20,20]}).resizable({grid:20}, {maxHeight: 20, minHeight: 20});
+    $( "#street4" ).draggable({grid:[20,20]}).resizable({grid:20}, {maxWidth: 20, minWidth: 20});
+    $( "#intersection" ).draggable({grid:[20,20]}), {maxWidth: 20, minWidth: 20, maxHeight: 20, minHeight: 20}
+    $( "#building" ).draggable({grid:[20,20]}), {maxWidth: 100, minWidth: 100, maxHeight: 100, minHeight: 100}
+  });
+  </script>
+
+</head>
+
+
+<body>
+ 
+<div id="street1" class="ui-widget-content">
+  <p><center>"Horizontal Street"</center>	
+  </p>
+</div>
+
+<div id="street2" class="ui-widget-content">
+  <p><center>"Veritical Street"</center>	
+  </p>
+</div>
+
+<div id="street3" class="ui-widget-content">
+  <p><center>"Horizontal Street"</center>	
+  </p>
+</div>
+
+<div id="street4" class="ui-widget-content">
+  <p><center>"Veritical Street"</center>	
+  </p>
+</div>
+
+<div id="intersection" class="ui-widget-content">
+  <p><center>"Intersection"</center>	
+  </p>
+</div>
+ 
+<div id="building" class="ui-widget-content">
+  <p><center>"SCHOOL"</center>	
+  </p>
+</div>
+ 
+</body>
+</html>
