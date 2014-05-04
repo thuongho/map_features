@@ -103,6 +103,7 @@
       $( ".draggable" ).draggable({ grid: [10,10] });
       $( "#draggable4" ).draggable({ grid: [ 20, 20 ], snap: true });
     });
+
   </script>
 </head>
 <body>
@@ -182,7 +183,9 @@
       for (var i = 0; i < thedivs.length; i++) {
 
         // add the id of each div to the ids array
+        // alert(thedivs[i].id);
         ids.push(thedivs[i].id);
+
 
         thedivs[i].onclick = function() {
 
@@ -197,6 +200,13 @@
       }
     </script>
   </div>
+  <input type="button" value="save" onclick="saveMe()">
+
+  <script>
+    var saveMe = function(){
+      alert("Hello World!");
+    };
+  </script>
 </div>
 </body>
 </html>
