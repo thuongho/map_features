@@ -76,7 +76,7 @@
     width:20px;
     height:20px;
   }
-  div img 
+  .house img 
   {
     margin: 0px auto;
     position: relative;
@@ -85,6 +85,7 @@
     width: 40px;
     height: 40px;
   }
+
   </style>
 
     <script>
@@ -130,7 +131,7 @@
       $('#icons').on("click",".redLand", function(){
         divCounter++;
         // alert(divCounter);
-        $("<div class='house'><img id='house" + divCounter + "' src='images/house.svg' alt='house' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable();
+        $("<div class='house' id='house" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/house.svg' alt='house' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable();
         moveToFront();
       });
     });
@@ -219,37 +220,37 @@
   </div>
   <!-- Canvas for building the city -->
   <div id="canvas">
-    <div class="ui-widget-content canvas-area">
+    <div id="cArea" class="ui-widget-content canvas-area">
 
 
     </div>
     <script>
-    // code to make the active div move to the front
-    // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
+    // // code to make the active div move to the front
+    // // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
 
-      // create an array to hold the (buildings, streets, landmarks) element's id
-      var ids=[],
-      // grab all the divs (each icon) and put it into thedivs
-      thedivs = document.getElementById("canvas").getElementsByTagName("div");
+    //   // create an array to hold the (buildings, streets, landmarks) element's id
+    //   var ids=[],
+    //   // grab all the divs (each icon) and put it into thedivs
+    //   thedivs = document.getElementById("canvas").getElementsByTagName("div");
 
-      for (var i = 0; i < thedivs.length; i++) {
+    //   for (var i = 0; i < thedivs.length; i++) {
 
-        // add the id of each div to the ids array
-        // alert(thedivs[i].id);
-        ids.push(thedivs[i].id);
+    //     // add the id of each div to the ids array
+    //     // alert(thedivs[i].id);
+    //     ids.push(thedivs[i].id);
 
 
-        thedivs[i].onclick = function() {
+    //     thedivs[i].onclick = function() {
 
-          for (var a = 0; a < ids.length; a++) {
-            if (this.id == ids[a]) {
-              // take current id that matches the selected id and move it to the end
-              ids.push(ids.splice(a,1));
-            }
-            document.getElementById(ids[a]).style.zIndex=a;     
-          }
-        }
-      }
+    //       for (var a = 0; a < ids.length; a++) {
+    //         if (this.id == ids[a]) {
+    //           // take current id that matches the selected id and move it to the end
+    //           ids.push(ids.splice(a,1));
+    //         }
+    //         document.getElementById(ids[a]).style.zIndex=a;     
+    //       }
+    //     }
+    //   }
     </script>
   </div>
 
