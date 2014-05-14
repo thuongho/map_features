@@ -85,6 +85,21 @@
     width: 40px;
     height: 40px;
   }
+  .apt img
+  {
+    width: 80px;
+    height: 80px;
+  }
+  .sky img
+  {
+    width: 100px;
+    height: 100px;
+  }
+  .ball img
+  {
+    width: 120px;
+    height: 120px;
+  }
 
   </style>
 
@@ -128,12 +143,83 @@
 
       var divCounter = 0;
       // cloning divs onto canvas
+
+      // **** streets ****
+      // road1
+      $('#icons').on("click",".street1", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road1.svg' alt='street1' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+        moveToFront();
+      });
+
+      // road2
+      $('#icons').on("click",".street2", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road2.svg' alt='street2' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+        moveToFront();
+      });
+
+      // road3
+      $('#icons').on("click",".street3", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road_3way.svg' alt='street3' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+        moveToFront();
+      });
+
+      // **** buildings ****
+      // apt
+      $('#icons').on("click",".building1", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house apt' id='building" + divCounter + "' style='width:80px;height:80px;border:1px solid black;'><img src='images/building_apt.svg' alt='house' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable();
+        moveToFront();
+      });
+
+      // office
+      $('#icons').on("click",".building2", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house apt' id='building" + divCounter + "' style='width:80px;height:80px;border:1px solid black;'><img src='images/building_office.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+        moveToFront();
+      });
+
+      // skyscraper1
+      $('#icons').on("click",".building3", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house sky' id='skyscraper" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/skyscraper_1.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+        moveToFront();
+      });
+
+      // skyscraper2
+      $('#icons').on("click",".building4", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house sky' id='skyscraper" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/skyscraper_2.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+        moveToFront();
+      });
+
+      // transamerica
+      $('#icons').on("click",".building5", function(){
+        divCounter++;
+        // alert(divCounter);
+        $("<div class='house sky' id='building" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/trans_america.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+        moveToFront();
+      });
+
+
+      // **** landmarks ****
+      // ballpark
       $('#icons').on("click",".redLand", function(){
         divCounter++;
         // alert(divCounter);
-        $("<div class='house' id='house" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/house.svg' alt='house' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable();
+        $("<div class='house ball' id='building" + divCounter + "' style='width:120px;height:120px;border:1px solid black;'><img src='images/ballpark.svg' alt='ballpark' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
         moveToFront();
       });
+
     });
 
     // jquery ui script for shopping cart
@@ -168,7 +254,8 @@
 
     // jquery ui script for snapping to grid
     $(function() {
-      $( ".draggable" ).draggable({ snap: true });
+      // $( ".draggable" ).draggable({ snap: true });
+      $( ".draggable" ).draggable({ grid: [20,20], snap: true });
         $( "#draggable4" ).draggable({ grid: [ 20, 20 ], snap: true });
     });
   </script>
@@ -187,19 +274,44 @@
         <div>
           <ul>
             <li id="house">img</li>
-            <li>img</li>
-            <li>img</li>
-            <li>img</li>
+            <li>
+              <div class="street1" style="border:1px solid black;width:20px;height:20px;">1
+              </div>
+            </li>
+            <li>
+              <div class="street2" style="border:1px solid black;width:20px;height:20px;">2
+              </div>
+            </li>
+            <li>
+              <div class="street3" style="border:1px solid black;width:20px;height:20px;">3
+              </div>
+            </li>
           </ul>
         </div>
       <!-- Building icons -->
         <h2><a href="#">Building</a></h2>
         <div>
           <ul>
-            <li>img</li>
-            <li>img</li>
-            <li>img</li>
-            <li>img</li>
+            <li>
+              <div class="building1" style="border:1px solid black;width:20px;height:20px;">1
+              </div>
+            </li>
+            <li>
+              <div class="building2" style="border:1px solid black;width:20px;height:20px;">2
+              </div>
+            </li>
+            <li>
+              <div class="building3" style="border:1px solid black;width:20px;height:20px;">3
+              </div>
+            </li>
+            <li>
+              <div class="building4" style="border:1px solid black;width:20px;height:20px;">4
+              </div>
+            </li>
+            <li>
+              <div class="building5" style="border:1px solid black;width:20px;height:20px;">5
+              </div>
+            </li>
           </ul>
         </div>
       <!-- Landmark icons -->
@@ -207,7 +319,7 @@
         <div>
           <ul>
             <li>
-              <div class="redLand" style="background:red;width:20px;height:20px;">
+              <div class="redLand" style="background:red;width:20px;height:20px;">ball
               </div>
             </li>
             <li>img</li>
