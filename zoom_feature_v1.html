@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoom v1 - overflow</title>
+  <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="js/jquery.panzoom.min.js"></script>
+
+
+  <style>
+    #fixedContainer
+    {
+      width: 700px;
+      height: 700px;
+      overflow: hidden;
+    }
+    #imageContainer
+    {
+      background: url(images/SF_map.svg);
+      width: 2080px;
+      height: 1200px;
+
+    }
+  </style>
+</head>
+<body>
+ 
+
+<div id="fixedContainer">
+  <div id="imageContainer">
+    
+  </div>
+</div>
+<div>
+  <button class="zoom-in">Zoom In</button>
+  <button class="zoom-out">Zoom Out</button>
+  <input type="range" class="zoom-range">
+</div>
+
+<script>
+  
+
+$('#imageContainer').panzoom({
+  $zoomIn: $(".zoom-in"),
+  $zoomOut: $(".zoom-out"),
+  $zoomRange: $(".zoom-range")
+});
+
+</script>
+</body>
+</html>
