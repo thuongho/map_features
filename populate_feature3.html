@@ -362,6 +362,20 @@
     $zoomOut: $(".zoom-out"),
     $zoomRange: $(".zoom-range")
   });
+
+// toggle panning on and off
+var panIsDisabled = true;
+
+$('#cArea').dblclick(function(){
+  alert(panIsDisabled == true ? "Panning is turned off." : "Panning is turned on.");
+  if (panIsDisabled == true){
+    $('#cArea').panzoom("option", "disablePan", true);
+    panIsDisabled = false;
+  } else {
+    $('#cArea').panzoom("option", "disablePan", false);
+    panIsDisabled = true;
+  }
+});
 </script>
 </div>
 </body>
