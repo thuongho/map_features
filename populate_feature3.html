@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="js/jquery-ui-1.10.4/themes/base/jquery-ui.css">
   <script type="text/javascript" src="js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/jquery.panzoom.min.js"></script>
   
   <style type="text/css">
   .flip 
@@ -51,13 +52,15 @@
     height: 600px;
     border: 1px solid black;
     margin: 0px auto;
+    overflow: hidden;
   }
   #canvas ol { margin: 0; padding: 1em 0 1em 3em; }
   li { list-style: none;}
   .canvas-area 
   {
-    width: 600px;
-    height: 600px;
+    background: url(images/SF_map.svg) no-repeat;
+    width: 2080px;
+    height: 1200px;
   }
 
   /* draggable icons */
@@ -335,40 +338,31 @@
   <!-- Canvas for building the city -->
   <div id="canvas">
     <div id="cArea" class="ui-widget-content canvas-area">
-
-
     </div>
-    <script>
-    // // code to make the active div move to the front
-    // // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
-
-    //   // create an array to hold the (buildings, streets, landmarks) element's id
-    //   var ids=[],
-    //   // grab all the divs (each icon) and put it into thedivs
-    //   thedivs = document.getElementById("canvas").getElementsByTagName("div");
-
-    //   for (var i = 0; i < thedivs.length; i++) {
-
-    //     // add the id of each div to the ids array
-    //     // alert(thedivs[i].id);
-    //     ids.push(thedivs[i].id);
-
-
-    //     thedivs[i].onclick = function() {
-
-    //       for (var a = 0; a < ids.length; a++) {
-    //         if (this.id == ids[a]) {
-    //           // take current id that matches the selected id and move it to the end
-    //           ids.push(ids.splice(a,1));
-    //         }
-    //         document.getElementById(ids[a]).style.zIndex=a;     
-    //       }
-    //     }
-    //   }
-    </script>
+    <!-- end of cArea -->
   </div>
+  <!-- end of Canvas -->
 
   </div>
+  <br>
+  <!-- zoom buttons -->
+  <div>
+    <button class="zoom-in">Zoom In</button>
+    <button class="zoom-out">Zoom Out</button>
+    <input type="range" class="zoom-range">
+  </div>
+  <!-- end of zoom buttons -->
+
+
+<script>
+  // Zoom features using panzoom
+  $('#cArea').panzoom({
+    // minScale: 0,
+    $zoomIn: $(".zoom-in"),
+    $zoomOut: $(".zoom-out"),
+    $zoomRange: $(".zoom-range")
+  });
+</script>
 </div>
 </body>
 </html>

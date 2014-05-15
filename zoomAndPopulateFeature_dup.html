@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoom v1 - overflow</title>
+  <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+  
+
+
+
+  <script>
+    // jQuery script for view/hide builder
+    $(document).ready(function(){
+      $('.flip').click(function(){
+        $('.icon-holder').slideToggle("slow");
+        // $(this).next().animate({width: 'toggle'});
+      });
+     }); 
+
+    // counter for newly created divs
+    var divCounter = 0;
+
+    // cloning divs onto canvas
+    // **** streets ****
+    // road1
+    $('#icons').on("click",".street1", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road1.svg' alt='street1' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+      moveToFront();
+    });
+  </script>
+
+  <style>
+    #fixedContainer
+    {
+      width: 700px;
+      height: 700px;
+      overflow: hidden;
+    }
+    #imageContainer
+    {
+      background: url(images/SF_map.svg) no-repeat;
+      width: 2080px;
+      height: 1200px;
+    }
+    .flip
+    {
+      float: right;
+      width: 10%;
+      border: 1px solid black;
+    }
+    .icon-holder
+    {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="flip">
+    <h5>View/Hide Builder</h5>
+  </div>
+  <div class="icon-holder">
+    <!-- <div id="catalog"> -->
+      <!-- Street icons -->
+      <h2><a href="#">Street</a></h2>
+      <div>
+        <ul>
+          <li id="house">img</li>
+          <li>
+            <div class="street1" style="border:1px solid black;width:20px;height:20px;">1
+            </div>
+          </li>
+          <li>
+            <div class="street2" style="border:1px solid black;width:20px;height:20px;">2
+            </div>
+          </li>
+          <li>
+            <div class="street3" style="border:1px solid black;width:20px;height:20px;">3
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Building icons -->
+      <h2><a href="#">Building</a></h2>
+      <div>
+        <ul>
+          <li>
+            <div class="building1" style="border:1px solid black;width:20px;height:20px;">1
+            </div>
+          </li>
+          <li>
+            <div class="building2" style="border:1px solid black;width:20px;height:20px;">2
+            </div>
+          </li>
+          <li>
+            <div class="building3" style="border:1px solid black;width:20px;height:20px;">3
+            </div>
+          </li>
+          <li>
+            <div class="building4" style="border:1px solid black;width:20px;height:20px;">4
+            </div>
+          </li>
+          <li>
+            <div class="building5" style="border:1px solid black;width:20px;height:20px;">5
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Landmark icons -->
+      <h2><a href="#">Landmark</a></h2>
+      <div>
+        <ul>
+          <li>
+            <div class="redLand" style="background:red;width:20px;height:20px;">ball
+            </div>
+          </li>
+          <li>img</li>
+          <li>img</li>
+          <li>img</li>
+        </ul>
+      </div>
+    <!-- </div> -->
+    <!-- ends catalog -->
+  </div>
+  <!-- ends icon-holder -->
+
+  <div id="cArea" class="ui-widget-content canvas-area">
+  </div>
+</body>
+</html>

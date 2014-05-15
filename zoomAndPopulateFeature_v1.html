@@ -5,7 +5,125 @@
   <title>Zoom v1 - overflow</title>
   <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="js/jquery.panzoom.min.js"></script>
+  <!-- // <script type="text/javascript" src="js/jquery.js"></script> -->
 
+
+  <script>
+    // jQuery script for view/hide builder
+    $(document).ready(function(){
+      $('.flip').click(function(){
+        $('.icon-holder').slideToggle("slow");
+        // $(this).next().animate({width: 'toggle'});
+      });
+    
+
+    // code to make the active div move to the front
+    // code from http://www.codingforums.com/javascript-programming/260289-bring-div-element-front-click.html
+    var moveToFront = function(){
+      // create an array to hold the (buildings, streets, landmarks) element's id
+      var ids=[],
+      // grab all the divs (each icon) and put it into thedivs
+      thedivs = document.getElementById("imageContainer").getElementsByTagName("div");
+
+      for (var i = 0; i < thedivs.length; i++) {
+
+        // add the id of each div to the ids array
+        ids.push(thedivs[i].id);
+
+        thedivs[i].onclick = function() {
+
+          for (var a = 0; a < ids.length; a++) {
+            if (this.id == ids[a]) {
+              // take current id that matches the selected id and move it to the end
+              ids.push(ids.splice(a,1));
+            }
+            document.getElementById(ids[a]).style.zIndex=a;     
+          }
+        }
+      }
+    };
+
+    // counter for newly created divs
+    var divCounter = 0;
+
+    // cloning divs onto canvas
+    // **** streets ****
+    // road1
+    $('#icons').on("click",".street1", function(){
+      divCounter++;
+      alert(divCounter);
+      $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road1.svg' alt='street1' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+      moveToFront();
+    });
+
+    // road2
+    $('#icons').on("click",".street2", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road2.svg' alt='street2' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+      moveToFront();
+    });
+
+    // road3
+    $('#icons').on("click",".street3", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house' id='street" + divCounter + "' style='width:40px;height:40px;border:1px solid black;'><img src='images/road_3way.svg' alt='street3' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable({ grid: [5,5]});
+      moveToFront();
+    });
+
+    // **** buildings ****
+    // apt
+    $('#icons').on("click",".building1", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house apt' id='building" + divCounter + "' style='width:80px;height:80px;border:1px solid black;'><img src='images/building_apt.svg' alt='house' type='image/svg+xml'/></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+
+    // office
+    $('#icons').on("click",".building2", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house apt' id='building" + divCounter + "' style='width:80px;height:80px;border:1px solid black;'><img src='images/building_office.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+
+    // skyscraper1
+    $('#icons').on("click",".building3", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house sky' id='skyscraper" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/skyscraper_1.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+
+    // skyscraper2
+    $('#icons').on("click",".building4", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house sky' id='skyscraper" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/skyscraper_2.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+
+    // transamerica
+    $('#icons').on("click",".building5", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house sky' id='building" + divCounter + "' style='width:100px;height:100px;border:1px solid black;'><img src='images/trans_america.svg' alt='house' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+
+
+    // **** landmarks ****
+    // ballpark
+    $('#icons').on("click",".redLand", function(){
+      divCounter++;
+      // alert(divCounter);
+      $("<div class='house ball' id='building" + divCounter + "' style='width:120px;height:120px;border:1px solid black;'><img src='images/ballpark.svg' alt='ballpark' type='image/svg+xml' /></div>").appendTo('.canvas-area').draggable();
+      moveToFront();
+    });
+    });
+  </script>
 
   <style>
     #fixedContainer
@@ -13,21 +131,124 @@
       width: 700px;
       height: 700px;
       overflow: hidden;
+      border: 1px solid black;
     }
     #imageContainer
     {
-      background: url(images/SF_map.svg);
+      background: url(images/SF_map.svg) no-repeat;
       width: 2080px;
       height: 1200px;
-
+    }
+    .flip
+    {
+      float: right;
+      width: 10%;
+      border: 1px solid black;
+    }
+    .icon-holder
+    {
+      float: right;
+      display: none;
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+    .container {
+        margin:20px;
+    }
+    .bl {
+        width:50px;
+        height:50px;
+        border-radius:10px;
+        display:block;
+        margin:5px;
+        float:left;
+    }
+    .pink {
+        background-color:#D91C5C;
+    }
+    .blue {
+        background-color:#00ADEE;
+    }
+    .coral {
+        background-color:#EE4036;
     }
   </style>
 </head>
 <body>
- 
+  <div class="flip">
+    <h5>View/Hide Builder</h5>
+  </div>
+  <div id="icons" class="icon-holder">
+    <!-- <div id="catalog"> -->
+      <!-- Street icons -->
+      <h2><a href="#">Street</a></h2>
+      <div>
+        <ul>
+          <li id="house">img</li>
+          <li>
+            <div class="street1" style="border:1px solid black;width:20px;height:20px;">1
+            </div>
+          </li>
+          <li>
+            <div class="street2" style="border:1px solid black;width:20px;height:20px;">2
+            </div>
+          </li>
+          <li>
+            <div class="street3" style="border:1px solid black;width:20px;height:20px;">3
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Building icons -->
+      <h2><a href="#">Building</a></h2>
+      <div>
+        <ul>
+          <li>
+            <div class="building1" style="border:1px solid black;width:20px;height:20px;">1
+            </div>
+          </li>
+          <li>
+            <div class="building2" style="border:1px solid black;width:20px;height:20px;">2
+            </div>
+          </li>
+          <li>
+            <div class="building3" style="border:1px solid black;width:20px;height:20px;">3
+            </div>
+          </li>
+          <li>
+            <div class="building4" style="border:1px solid black;width:20px;height:20px;">4
+            </div>
+          </li>
+          <li>
+            <div class="building5" style="border:1px solid black;width:20px;height:20px;">5
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Landmark icons -->
+      <h2><a href="#">Landmark</a></h2>
+      <div>
+        <ul>
+          <li>
+            <div class="redLand" style="background:red;width:20px;height:20px;">ball
+            </div>
+          </li>
+        </ul>
+      </div>
+    <!-- </div> -->
+    <!-- ends catalog -->
+    <div class="container">
+    <div class="bl blue draggable"></div>
+    <div class="bl coral draggable"></div>
+    <div class="bl pink draggable"></div>
+    </div>
+  </div>
+  <!-- ends icon-holder -->
 
+<!-- playable area -->
 <div id="fixedContainer">
-  <div id="imageContainer">
+  <!-- canvas of the blank map -->
+  <div id="imageContainer" class="canvas-area">
     
   </div>
 </div>
@@ -39,12 +260,14 @@
 
 <script>
   
-
+// Zoom features using panzoom
 $('#imageContainer').panzoom({
+  // minScale: 0,
   $zoomIn: $(".zoom-in"),
   $zoomOut: $(".zoom-out"),
   $zoomRange: $(".zoom-range")
 });
+
 
 </script>
 </body>
